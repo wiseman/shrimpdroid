@@ -21,7 +21,11 @@
                :target-path "target/debug"
                :android {:aot :all-with-unused
                          :rename-manifest-package "com.lemondronor.shrimpdroid.debug"
-                         :manifest-options {:app-name "shrimpdroid - debug"}}}]
+                         :manifest-options {:app-name "shrimpdroid - debug"}
+                         ;; For some reason some of the turboshrimp
+                         ;; debug messages seem to hang the app.
+                         :ignore-log-priority [:debug :verbose]
+                         }}]
              :release
              [;; :android-common
               {:target-path "target/release"

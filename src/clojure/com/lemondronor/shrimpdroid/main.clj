@@ -2,6 +2,7 @@
   (:require
    [clojure.string :as string]
    [com.lemondronor.turboshrimp :as ar-drone]
+   [com.lemondronor.turboshrimp.at :as commands]
    [neko.activity :as activity]
    [neko.context :as context]
    [neko.log :as log]
@@ -163,11 +164,17 @@
       (set-elmt :batt "unk %"))))
 
 
+(defn agent-error-handler [agent ^Exception err]
+  (log/e err "An action sent to" agent "caused an exception"))
+
+
 (activity/defactivity com.lemondronor.shrimpdroid.MainActivity
   :key :main
   :on-create
   (fn [this bundle]
-    (let [controller {:drone (agent nil)}]
+    (let [controller {:drone (agent
+                              nil
+                              :error-handler agent-error-handler)}]
       (log/i "MainActivity activate")
       (threading/on-ui
        (activity/set-content-view!
@@ -181,5 +188,10 @@
                       :event-handler (fn [evt navdata]
                                        (when (= evt :navdata)
                                          (display-navdata navdata))))]
+           (log/i "Connecting")
            (ar-drone/connect! drone)
+           (log/i "Connected")
+           (ar-drone/command
+            drone :navdata-options commands/default-navdata-options)
+           (log/i "WOO READY")
            drone))))))
