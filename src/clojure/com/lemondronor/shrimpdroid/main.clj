@@ -82,7 +82,7 @@
                      :orientation :vertical}
      [:linear-layout {:orientation :horizontal
                       :layout-width :fill
-                      :layout-margin-bottom 100}
+                      :layout-margin-bottom [30 "sp"]}
       [:button {:text "Takeoff"
                 :layout-width 0
                 :layout-weight 1.0
