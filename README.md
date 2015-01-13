@@ -8,7 +8,7 @@ control an AR.Drone.
 
 ## To install and use the app:
 
-1. Install the android SDK.
+1. Install the Android SDK.
 2. Change the `:sdk-path` key in project.clj to point to where you installed the SDK.
 3. Connect your Android device to your computer.
 4. Turn on your AR.Drone and connect your Androd device to the drone's wifi network.
