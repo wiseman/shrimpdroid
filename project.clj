@@ -7,12 +7,12 @@
   :source-paths ["src/clojure"]
   :java-source-paths ["src/java"]
   :javac-options ["-target" "1.6" "-source" "1.6" "-Xlint:-options"]
-  :plugins [[lein-droid "0.3.0-beta4"]]
+  :plugins [[lein-droid "0.3.3"]]
 
   :dependencies [;; Need 0.1.7 of clj-tuple to fix an android issue.
                  [clj-tuple "0.1.7"]
                  [com.lemondronor/turboshrimp "0.3.7"]
-                 [neko/neko "3.1.0-SNAPSHOT"]
+                 [neko/neko "3.2.0-preview3"]
                  [org.clojure-android/clojure "1.7.0-alpha3" :use-resources true]]
   :profiles {:default [:dev]
              :dev
